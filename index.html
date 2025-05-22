@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fff5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .love-letter {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 600px;
+            line-height: 1.6;
+            color: #333;
+            position: relative;
+        }
+        .love-letter:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(to right, #ff6b8b, #ff8e53);
+            border-radius: 15px 15px 0 0;
+        }
+        h1 {
+            color: #ff6b8b;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .heart {
+            color: #ff6b8b;
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .hug-btn {
+            display: block;
+            width: 80%;
+            margin: 20px auto;
+            padding: 12px;
+            background: linear-gradient(to right, #ff6b8b, #ff8e53);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .hug-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to right, #ff8e53, #ff6b8b);
+        }
+        .hug-animation {
+            text-align: center;
+            font-size: 60px;
+            margin: 20px 0;
+            display: none;
+            animation: pulse 0.5s infinite alternate;
+        }
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="love-letter">
+        <h1>Para sa Baby ko</h1>
+        
+        <p>Baby, kung nababasa mo 'to, nais ko lang sabihin na...</p>
+        
+        <p>Alam kong nasaktan ka at may tampo ka sa akin. Gusto kong humingi ng tawad sa lahat ng nagdulot sayo ng sama ng loob. Minsan kasi sa inis o pagod, may nasasabi o nagagawa akong hindi ko naiisip kung paano ito tatama sayo.</p>
+        
+        <p>Hindi ko ginusto na lagi tayong nag-aaway o nagtatampuhan. Ayokong sanayin tayo sa sakit o tampuhan. Gusto ko yung relasyon nating puno ng respeto, lambing, at pag-unawa.</p>
+        
+        <p>Mahal kita sobra, at kung minsan man hindi ko naipapakita ng tama, hindi ibig sabihin nun na hindi ka mahalaga sa akin. Sa totoo lang, ikaw pa rin ang una kong naiisip sa umaga at huling iniisip bago matulog.</p>
+        
+        <p>Patawad kung hindi ako naging sapat sa mga sandaling kailangan mo ako. Handa akong makinig, umintindi, at baguhin ang sarili ko para sa ating dalawa.</p>
+        
+        <p>Sana mapatawad mo ako. Hindi ako perpekto, pero lagi akong magsisikap na mahalin ka ng tama para sayo.</p>
+        
+        <p>Sana mapatawad mo ko, baby. Sorry talaga...</p>
+        
+        <div class="heart">♥</div>
+        
+        <button class="hug-btn" id="hugBtn">Send Virtual Hug 🤗</button>
+        <div class="hug-animation" id="hugAnimation">🤗</div>
+    </div>
+
+    <script>
+        const hugBtn = document.getElementById('hugBtn');
+        const hugAnimation = document.getElementById('hugAnimation');
+        
+        hugBtn.addEventListener('click', function() {
+            // Hide button and show animation
+            hugBtn.style.display = 'none';
+            hugAnimation.style.display = 'block';
+            
+            // Create floating hearts
+            for (let i = 0; i < 10; i++) {
+                createHeart();
+            }
+            
+            // Show message after animation
+            setTimeout(() => {
+                hugAnimation.textContent = "Hug sent with love! ❤️";
+                setTimeout(() => {
+                    hugBtn.style.display = 'block';
+                    hugAnimation.style.display = 'none';
+                    hugAnimation.textContent = "🤗";
+                }, 2000);
+            }, 1500);
+        });
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animation = 'float ' + (Math.random() * 3 + 2) + 's ease-in forwards';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+        
+        // Add floating animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
